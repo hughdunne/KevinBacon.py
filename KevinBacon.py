@@ -58,9 +58,11 @@ def init_global_data():
     global adjacencyMatrix
     global cache
 
-    # Get a list of casts and flatten to a single list.
-    # Convert to set and back to list to remove duplicates.
-    actorList = list(set([actor for cast in imdb.values() for actor in cast]))
+    # Get the list of all actors.
+    actorSet = set()
+    for cast in imdb.values():
+        actorSet.update(cast)
+    actorList = list(actorSet)
     N = len(actorList)
 
     # Initialize the adjacency matrix as an N by N matrix of zeroes.
@@ -86,21 +88,19 @@ def get_power(N):
     global cache
 
     while len(cache) < N + 1:
-        # Take a copy of the highest power we have calculated so far.
-        last = np.copy(cache[-1])
-
+        # Get a reference to the highest power we have calculated so far.
         # Calculate the next power and add the matrix to the cache.
-        cache.append(np.dot(last, adjacencyMatrix))
+        cache.append(np.dot(cache[-1], adjacencyMatrix))
 
     # Return a reference to a matrix in the cache.
     return cache[N]
 
-def KevinBaconNumber(actor):
+def actorNumber(actor, referenceActor):
     """
-        Calculate the actor's Kevin Bacon number.
+        Calculate an actor's number relative to a reference actor.
     """
     global actorList
-    i = actorList.index('Kevin Bacon')
+    i = actorList.index(referenceActor)
     j = actorList.index(actor)
     if i == j:
         return 0
@@ -113,6 +113,12 @@ def KevinBaconNumber(actor):
             raise Exception("Infinite loop")
         A = get_power(power)
     return power
+
+def KevinBaconNumber(actor):
+    """
+        Calculate the actor's Kevin Bacon number.
+    """
+    return actorNumber(actor, 'Kevin Bacon')
 
 if __name__ == "__main__":
     init_global_data()

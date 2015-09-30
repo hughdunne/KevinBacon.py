@@ -10,7 +10,6 @@
     the actor's node to Kevin Bacon's node. By convention, Kevin Bacon's
     Kevin Bacon number is zero.
 
-
     The adjacency matrix of the graph is the matrix where element (i,j)
     is the number of edges connecting nodes i and j, i.e. the number of
     movies that both i and j have acted in.

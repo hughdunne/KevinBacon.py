@@ -4,9 +4,9 @@ The problem can be represented as an undirected graph where each node
 is an actor and each edge is a movie. An edge connects two nodes if
 the two actors corresponding to the nodes both appear in the movie
 corresponding to the edge. The Kevin Bacon number of an actor is
-therefore the shortest path through the graph connecting the actor's
-node to Kevin Bacon's node. By convention, Kevin Bacon's Kevin Bacon
-number is zero.
+therefore the length of the shortest path through the graph connecting
+the actor's node to Kevin Bacon's node. By convention, Kevin Bacon's
+Kevin Bacon number is zero.
 
 The adjacency matrix of the graph is the matrix where element (i,j)
 is the number of edges connecting nodes i and j, i.e. the number of
